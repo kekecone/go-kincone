@@ -1,0 +1,3608 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "kincone Web API",
+        "version": "1.3.1"
+    },
+    "host": "api.kincone.com",
+    "basePath": "/v1",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/attendance": {
+            "post": {
+                "tags": [
+                    "attendance"
+                ],
+                "summary": "\u52e4\u6020\u767b\u9332\u30fb\u66f4\u65b0",
+                "description": "\u6307\u5b9a\u3057\u305f\u5f93\u696d\u54e1\u3068\u51fa\u52e4\u65e5\u306b\u8a72\u5f53\u3059\u308b\u52e4\u6020\u660e\u7d30\u3092\u767b\u9332\u30fb\u66f4\u65b0\u3057\u307e\u3059\u3002<br>\u5c31\u696d\u5f62\u614b\u306e\u300c\u4f11\u61a9\u306e\u4ed8\u4e0e\u65b9\u6cd5\u300d\u304c \"\u4e00\u5b9a\u6642\u9593\u4ee5\u4e0a\u52e4\u52d9\u3057\u305f\u5834\u5408\u306b\u4ed8\u4e0e\u3059\u308b\" \u306e\u5834\u5408\u306f\u4f11\u61a9\u6642\u9593\u304c\u81ea\u52d5\u7684\u306b\u8a08\u7b97\u3055\u308c\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "work_day",
+                        "in": "formData",
+                        "description": "\u51fa\u52e4\u65e5\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "start",
+                        "in": "formData",
+                        "description": "\u51fa\u52e4\u6642\u523b\uff08hh:mm\uff09",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "end",
+                        "in": "formData",
+                        "description": "\u9000\u52e4\u6642\u523b\uff08hh:mm\uff09",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5099\u8003",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "auto_give_breaks",
+                        "in": "formData",
+                        "description": "1\u3092\u6307\u5b9a\u3057\u305f\u5834\u5408\u306f\u3001\u5c31\u696d\u5f62\u614b\u306e\u300c\u4f11\u61a9\u306e\u4ed8\u4e0e\u65b9\u6cd5\u300d\u304c \"\u6642\u9593\u5e2f\u3092\u6307\u5b9a\u3059\u308b\" \u306e\u5834\u5408\u306b\u4f11\u61a9\u6642\u9593\u304c\u81ea\u52d5\u7684\u306b\u8a08\u7b97\u3055\u308c\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/attendance/flags": {
+            "post": {
+                "tags": [
+                    "attendanceFlags"
+                ],
+                "summary": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u8a2d\u5b9a",
+                "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3068\u65e5\u4ed8\u3092\u6307\u5b9a\u3057\u3066\u52e4\u6020\u660e\u7d30\u306b\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u3092\u767b\u9332\u3057\u307e\u3059\u3002\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5229\u7528\u304c ON \u306b\u306a\u3063\u3066\u3044\u308b\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u306f\u6307\u5b9a\u3067\u304d\u307e\u305b\u3093\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "\u65e5\u4ed8\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "flags",
+                        "in": "formData",
+                        "description": "\u767b\u9332\u3057\u305f\u3044\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u540d\u306e\u914d\u5217",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "attendanceFlags"
+                ],
+                "summary": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u524a\u9664",
+                "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3068\u65e5\u4ed8\u3092\u6307\u5b9a\u3057\u3066\u52e4\u6020\u660e\u7d30\u306b\u767b\u9332\u3055\u308c\u3066\u3044\u308b\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u3092\u524a\u9664\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "\u65e5\u4ed8\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "flags",
+                        "in": "formData",
+                        "description": "\u524a\u9664\u3057\u305f\u3044\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u540d\u306e\u914d\u5217\u3002\u7701\u7565\u6642\u306f\u767b\u9332\u3055\u308c\u3066\u3044\u308b\u5168\u3066\u306e\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u8a2d\u5b9a\u3092\u524a\u9664\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/attendance/hourly_paid_leave": {
+            "post": {
+                "tags": [
+                    "attendanceHourlyPaidLeave"
+                ],
+                "summary": "\u6642\u9593\u4f11\u306e\u767b\u9332\u30fb\u66f4\u65b0",
+                "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3068\u65e5\u4ed8\u3092\u6307\u5b9a\u3057\u3066\u52e4\u6020\u660e\u7d30\u306b\u6642\u9593\u4f11\u3092\u767b\u9332\u3057\u307e\u3059\u3002\u6642\u9593\u4f11\u306e\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5229\u7528\u304c ON \u306b\u306a\u3063\u3066\u3044\u308b\u5834\u5408\u306f\u6307\u5b9a\u3067\u304d\u307e\u305b\u3093\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "\u65e5\u4ed8\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "hours",
+                        "in": "formData",
+                        "description": "\u6642\u9593\u4f11\u306e\u53d6\u5f97\u6642\u9593",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "attendanceHourlyPaidLeave"
+                ],
+                "summary": "\u6642\u9593\u4f11\u306e\u524a\u9664",
+                "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9\u3068\u65e5\u4ed8\u3092\u6307\u5b9a\u3057\u3066\u52e4\u6020\u660e\u7d30\u306b\u767b\u9332\u3055\u308c\u3066\u3044\u308b\u6642\u9593\u4f11\u3092\u524a\u9664\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "\u65e5\u4ed8\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/attendance/workflow/{workflowID}": {
+            "put": {
+                "tags": [
+                    "attendanceWorkflows"
+                ],
+                "summary": "\u52e4\u6020\u7533\u8acb\u627f\u8a8d\u53d6\u6d88",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u52e4\u6020\u306e\u627f\u8a8d\u3092\u53d6\u308a\u6d88\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "attendanceWorkflows"
+                ],
+                "summary": "\u52e4\u6020\u7533\u8acb\u627f\u8a8d",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u52e4\u6020\u306e\u7533\u8acb\u3092\u627f\u8a8d\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "attendanceWorkflows"
+                ],
+                "summary": "\u52e4\u6020\u7533\u8acb\u5dee\u623b\u3057",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u52e4\u6020\u306e\u7533\u8acb\u3092\u5dee\u623b\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/attendance/workflows": {
+            "get": {
+                "tags": [
+                    "attendanceWorkflows"
+                ],
+                "summary": "\u52e4\u6020\u7533\u8acb\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u671f\u9593\u306e\u52e4\u6020\u7533\u8acb\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "\u30b9\u30c6\u30fc\u30bf\u30b9\uff080: \u5168\u3066, 1: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_name",
+                        "in": "query",
+                        "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u540d",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "workflows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/attendanceWorkflowModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/attendances": {
+            "get": {
+                "tags": [
+                    "attendances"
+                ],
+                "summary": "\u52e4\u6020\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u5f93\u696d\u54e1\u3068\u671f\u9593\u306b\u8a72\u5f53\u3059\u308b\u52e4\u6020\u306e\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendances": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/attendanceModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/compensation/workflow/{workflowID}": {
+            "post": {
+                "tags": [
+                    "compensationWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb\u627f\u8a8d",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u3092\u627f\u8a8d\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "compensationWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u5dee\u623b\u3057",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb\u3092\u5dee\u623b\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/compensation/workflows": {
+            "get": {
+                "tags": [
+                    "compensationWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u671f\u9593\u306e\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u4f11\u65e5\u51fa\u52e4\u65e5\u3001\u3042\u308b\u3044\u306f\u632f\u4f11\u30fb\u4ee3\u4f11\u53d6\u5f97\u65e5\u306e\u3044\u305a\u308c\u304b\u4e00\u65b9\u3067\u3082\u8a72\u5f53\u3059\u308b\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "\u30b9\u30c6\u30fc\u30bf\u30b9\uff080: \u5168\u3066, 1: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_name",
+                        "in": "query",
+                        "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u540d",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "workflows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/compensationWorkflowModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/departments": {
+            "get": {
+                "tags": [
+                    "departments"
+                ],
+                "summary": "\u90e8\u7f72\u30fb\u5e97\u8217\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u5bfe\u8c61\u30a2\u30ab\u30a6\u30f3\u30c8\u306b\u7d10\u3065\u304f\u90e8\u7f72\u30fb\u5e97\u8217\u306e\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "departments": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/departmentModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/expense": {
+            "post": {
+                "tags": [
+                    "expenses"
+                ],
+                "summary": "\u4ea4\u901a\u8cbb\u767b\u9332",
+                "description": "\u4ea4\u901a\u8cbb\u660e\u7d30\u3092\u767b\u9332\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "\u5229\u7528\u65e5\uff08YYYY-MM-DD\uff09",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "expense",
+                        "in": "formData",
+                        "description": "\u4ea4\u901a\u8cbb",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "\u4ea4\u901a\u624b\u6bb5\uff081: \u96fb\u8eca, 2: \u30d0\u30b9, 3: \u30bf\u30af\u30b7\u30fc, 4: \u65b0\u5e79\u7dda/\u7279\u6025, 5: \u98db\u884c\u6a5f, 6: \u8eca, 7: \u8239/\u30d5\u30a7\u30ea\u30fc, 8: \u305d\u306e\u4ed6, 0: \u7269\u8ca9\uff09",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "in",
+                        "in": "formData",
+                        "description": "\u5229\u7528\u533a\u9593\uff08\u5165\u5834\u99c5\uff09",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "out",
+                        "in": "formData",
+                        "description": "\u5229\u7528\u533a\u9593\uff08\u51fa\u5834\u99c5\uff09",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "purpose",
+                        "in": "formData",
+                        "description": "\u7528\u9014\uff08\u4ea4\u901a\u8cbb\u306e\u660e\u7d30\u306b\u7528\u9014\u6b04\u3092\u8ffd\u52a0\u3059\u308b\u8a2d\u5b9a\u306b\u306a\u3063\u3066\u3044\u308b\u5834\u5408\u306e\u307f\u4f7f\u7528\u51fa\u6765\u307e\u3059\uff09",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u8a2a\u554f\u5148/\u5099\u8003",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "expense": {
+                                            "$ref": "#/definitions/expenseModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/expense/workflow/{workflowID}": {
+            "put": {
+                "tags": [
+                    "expenseWorkflows"
+                ],
+                "summary": "\u4ea4\u901a\u8cbb\u7533\u8acb\u627f\u8a8d\u53d6\u6d88",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4ea4\u901a\u8cbb\u306e\u627f\u8a8d\u3092\u53d6\u308a\u6d88\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "expenseWorkflows"
+                ],
+                "summary": "\u4ea4\u901a\u8cbb\u7533\u8acb\u627f\u8a8d",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4ea4\u901a\u8cbb\u306e\u7533\u8acb\u3092\u627f\u8a8d\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "expenseWorkflows"
+                ],
+                "summary": "\u4ea4\u901a\u8cbb\u7533\u8acb\u5dee\u623b\u3057",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4ea4\u901a\u8cbb\u306e\u7533\u8acb\u3092\u5dee\u623b\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/expense/workflows": {
+            "get": {
+                "tags": [
+                    "expenseWorkflows"
+                ],
+                "summary": "\u4ea4\u901a\u8cbb\u7533\u8acb\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u671f\u9593\u306e\u4ea4\u901a\u8cbb\u7533\u8acb\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "\u30b9\u30c6\u30fc\u30bf\u30b9\uff080: \u5168\u3066, 1: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_name",
+                        "in": "query",
+                        "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u540d",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "workflows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/expenseWorkflowModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/flag/workflow/{workflowID}": {
+            "post": {
+                "tags": [
+                    "flagWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u627f\u8a8d",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u3092\u627f\u8a8d\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "flagWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u5dee\u623b\u3057",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u3092\u5dee\u623b\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/flag/workflows": {
+            "get": {
+                "tags": [
+                    "flagWorkflows"
+                ],
+                "summary": "\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u671f\u9593\u306e\u4f11\u65e5\u7b49\u306e\u7533\u8acb\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "\u30b9\u30c6\u30fc\u30bf\u30b9\uff080: \u5168\u3066, 1: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_name",
+                        "in": "query",
+                        "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u540d",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "workflows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/flagWorkflowModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/hourly_paid_leave/workflow/{workflowID}": {
+            "post": {
+                "tags": [
+                    "hourlyPaidLeaveWorkflows"
+                ],
+                "summary": "\u6642\u9593\u4f11\u306e\u7533\u8acb\u627f\u8a8d",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u6642\u9593\u4f11\u306e\u7533\u8acb\u3092\u627f\u8a8d\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "hourlyPaidLeaveWorkflows"
+                ],
+                "summary": "\u6642\u9593\u4f11\u306e\u7533\u8acb\u5dee\u623b\u3057",
+                "description": "\u6307\u5b9a\u3057\u305f\u7533\u8acbID\u306b\u8a72\u5f53\u3059\u308b\u6642\u9593\u4f11\u306e\u7533\u8acb\u3092\u5dee\u623b\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "workflowID",
+                        "in": "path",
+                        "description": "\u7533\u8acbID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "note",
+                        "in": "formData",
+                        "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "result": {
+                                            "description": "\u51e6\u7406\u7d50\u679c",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/hourly_paid_leave/workflows": {
+            "get": {
+                "tags": [
+                    "hourlyPaidLeaveWorkflows"
+                ],
+                "summary": "\u6642\u9593\u4f11\u306e\u7533\u8acb\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u6307\u5b9a\u3057\u305f\u671f\u9593\u306e\u6642\u9593\u4f11\u306e\u7533\u8acb\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                "parameters": [
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "\u5e74\u6708\uff08YYYYMM\uff09\u3002\u6307\u5b9a\u3055\u308c\u305f\u5e74\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002\u7701\u7565\u6642\u306f\u5f53\u6708\u306e\u30c7\u30fc\u30bf\u3092\u8fd4\u3057\u307e\u3059\u3002",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "\u30b9\u30c6\u30fc\u30bf\u30b9\uff080: \u5168\u3066, 1: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "department_name",
+                        "in": "query",
+                        "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u540d",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "workflows": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/hourlyPaidLeaveWorkflowModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/punch/in": {
+            "post": {
+                "tags": [
+                    "punch"
+                ],
+                "summary": "\u51fa\u52e4\u6253\u523b",
+                "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u3051\u4ed8\u3051\u305f\u6642\u523b\u3092\u51fa\u52e4\u6642\u523b\u3068\u3057\u3066\u8a18\u9332\u3057\u307e\u3059\u3002\u65e2\u306b\u51fa\u52e4\u6e08\u307f\u306e\u5834\u5408\u306f\u52e4\u6020\u30c7\u30fc\u30bf\u306f\u66f4\u65b0\u3055\u308c\u307e\u305b\u3093\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "formData",
+                        "description": "\u7def\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "formData",
+                        "description": "\u7d4c\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/punch/break": {
+            "post": {
+                "tags": [
+                    "punch"
+                ],
+                "summary": "\u4f11\u61a9\u6253\u523b",
+                "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u3051\u4ed8\u3051\u305f\u6642\u523b\u3092\u4f11\u61a9\u958b\u59cb\u6642\u523b\u3068\u3057\u3066\u8a18\u9332\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "allnight",
+                        "in": "formData",
+                        "description": "\u5fb9\u591c\u30d5\u30e9\u30b0\uff080: \u901a\u5e38\u52e4\u52d9, 1: \u5fb9\u591c\u52e4\u52d9\uff09",
+                        "required": false,
+                        "type": "string",
+                        "default": "0"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "formData",
+                        "description": "\u7def\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "formData",
+                        "description": "\u7d4c\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/punch/back": {
+            "post": {
+                "tags": [
+                    "punch"
+                ],
+                "summary": "\u5fa9\u5e30\u6253\u523b",
+                "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u3051\u4ed8\u3051\u305f\u6642\u523b\u3092\u4f11\u61a9\u7d42\u4e86\u6642\u523b\u3068\u3057\u3066\u8a18\u9332\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "allnight",
+                        "in": "formData",
+                        "description": "\u5fb9\u591c\u30d5\u30e9\u30b0\uff080: \u901a\u5e38\u52e4\u52d9, 1: \u5fb9\u591c\u52e4\u52d9\uff09",
+                        "required": false,
+                        "type": "string",
+                        "default": "0"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "formData",
+                        "description": "\u7def\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "formData",
+                        "description": "\u7d4c\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/punch/out": {
+            "post": {
+                "tags": [
+                    "punch"
+                ],
+                "summary": "\u9000\u52e4\u6253\u523b",
+                "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u3092\u53d7\u3051\u4ed8\u3051\u305f\u6642\u523b\u3092\u9000\u52e4\u6642\u523b\u3068\u3057\u3066\u8a18\u9332\u3057\u307e\u3059\u3002\u65e2\u306b\u9000\u52e4\u6e08\u307f\u306e\u5834\u5408\u306f\u52e4\u6020\u30c7\u30fc\u30bf\u3092\u66f4\u65b0\u3057\u307e\u3059\u3002",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "allnight",
+                        "in": "formData",
+                        "description": "\u5fb9\u591c\u30d5\u30e9\u30b0\uff080: \u901a\u5e38\u52e4\u52d9, 1: \u5fb9\u591c\u52e4\u52d9\uff09",
+                        "required": false,
+                        "type": "string",
+                        "default": "0"
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "formData",
+                        "description": "\u7def\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "formData",
+                        "description": "\u7d4c\u5ea6",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "attendance": {
+                                            "$ref": "#/definitions/attendanceModel"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "\u5f93\u696d\u54e1\u4e00\u89a7\u53d6\u5f97",
+                "description": "\u5bfe\u8c61\u30a2\u30ab\u30a6\u30f3\u30c8\u306b\u7d10\u3065\u304f\u5f93\u696d\u54e1\u306e\u4e00\u89a7\u3092\u8fd4\u3057\u307e\u3059\u3002\u30b9\u30c6\u30fc\u30bf\u30b9\u304c\u5229\u7528\u4e2d\u306e\u30c7\u30fc\u30bf\u306e\u307f\u8fd4\u3057\u307e\u3059\u3002",
+                "responses": {
+                    "200": {
+                        "description": "\u6b63\u5e38\u6642",
+                        "schema": {
+                            "properties": {
+                                "status": {
+                                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "boolean"
+                                },
+                                "result_code": {
+                                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "response": {
+                                    "description": "API\u30ec\u30b9\u30dd\u30f3\u30b9",
+                                    "properties": {
+                                        "users": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/userModel"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "API\u30c8\u30fc\u30af\u30f3\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "403": {
+                        "description": "API\u306b\u30a2\u30af\u30bb\u30b9\u3059\u308b\u6a29\u9650\u304c\u3042\u308a\u307e\u305b\u3093\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "422": {
+                        "description": "\u30d1\u30e9\u30e1\u30fc\u30bf\u306e\u5024\u3092\u78ba\u8a8d\u3057\u3066\u4e0b\u3055\u3044\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "API\u30b5\u30fc\u30d0\u30fc\u306e\u5185\u90e8\u7684\u306a\u30a8\u30e9\u30fc\u3067\u3059\u3002",
+                        "schema": {
+                            "$ref": "#/definitions/errorModel"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "errorModel": {
+            "description": "\u30a8\u30e9\u30fc",
+            "properties": {
+                "status": {
+                    "description": "\u7d50\u679c\u30b9\u30c6\u30fc\u30bf\u30b9",
+                    "type": "boolean"
+                },
+                "result_code": {
+                    "description": "\u7d50\u679c\u30b3\u30fc\u30c9",
+                    "type": "string"
+                },
+                "response": {
+                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "userModel": {
+            "description": "\u5f93\u696d\u54e1\u60c5\u5831",
+            "properties": {
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "kana_family_name": {
+                    "description": "\u59d3\uff08\u30ab\u30ca\uff09",
+                    "type": "string"
+                },
+                "kana_first_name": {
+                    "description": "\u540d\uff08\u30ab\u30ca\uff09",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "regulation_name": {
+                    "description": "\u5c31\u696d\u5f62\u614b\u540d\u79f0",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "hire_date": {
+                    "description": "\u5165\u793e\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "leave_date": {
+                    "description": "\u9000\u793e\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "created": {
+                    "description": "\u767b\u9332\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "role_name": {
+                    "description": "\u6a29\u9650\u540d",
+                    "type": "string"
+                },
+                "pass_price": {
+                    "description": "\u5b9a\u671f\u4ee3",
+                    "type": "string"
+                },
+                "pass_note": {
+                    "description": "\u5b9a\u671f\u6982\u8981",
+                    "type": "string"
+                },
+                "save_buying": {
+                    "description": "\u7269\u8ca9\u3092\u8aad\u307f\u53d6\u308b",
+                    "type": "boolean"
+                },
+                "departments": {
+                    "description": "\u90e8\u7f72",
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "name": {
+                                "description": "\u90e8\u7f72\u540d",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "departmentModel": {
+            "description": "\u90e8\u7f72\u30fb\u5e97\u8217\u60c5\u5831",
+            "properties": {
+                "name": {
+                    "description": "\u90e8\u7f72\u540d",
+                    "type": "string"
+                },
+                "created": {
+                    "description": "\u767b\u9332\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                }
+            },
+            "type": "object"
+        },
+        "attendanceModel": {
+            "description": "\u52e4\u6020\u660e\u7d30",
+            "properties": {
+                "work_day": {
+                    "description": "\u51fa\u52e4\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "start": {
+                    "description": "\u51fa\u52e4\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD hh:mm"
+                },
+                "end": {
+                    "description": "\u9000\u52e4\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD hh:mm"
+                },
+                "break_hours": {
+                    "description": "\u4f11\u61a9\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "work_hours": {
+                    "description": "\u7dcf\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "actual_work_hours": {
+                    "description": "\u5b9f\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "paid_holiday": {
+                    "description": "\u6709\u7d66\u53d6\u5f97\u65e5\u6570",
+                    "type": "string",
+                    "format": "9.999"
+                },
+                "hourly_paid_leave": {
+                    "description": "\u6642\u9593\u4f11",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "regular_work_hours": {
+                    "description": "\u6240\u5b9a\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "overtime_work_hours": {
+                    "description": "\u6642\u9593\u5916\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "latenight_work_hours": {
+                    "description": "\u6df1\u591c\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "come_late_hours": {
+                    "description": "\u9045\u523b\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "leave_early_hours": {
+                    "description": "\u65e9\u9000\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "fixed_work_hours": {
+                    "description": "\u9069\u7528\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "included_break_hours": {
+                    "description": "\u542b\u307e\u308c\u308b\u4f11\u61a9\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "filled_work_hours": {
+                    "description": "\u5408\u8a08\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "work_on_day_off": {
+                    "description": "\u627f\u8a8d\u6e08\u307f\u4f11\u65e5\u51fa\u52e4\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "furikyu": {
+                    "description": "\u632f\u4f11\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "daikyu": {
+                    "description": "\u4ee3\u4f11\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "come_late": {
+                    "description": "\u9045\u523b\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "leave_early": {
+                    "description": "\u65e9\u9000\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "absence": {
+                    "description": "\u6b20\u52e4\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "allnight": {
+                    "description": "\u5fb9\u591c\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "start_device": {
+                    "description": "\u51fa\u52e4\u6642\u30ec\u30b3\u30fc\u30c0\u30fc\u540d",
+                    "type": "string"
+                },
+                "end_device": {
+                    "description": "\u9000\u52e4\u6642\u30ec\u30b3\u30fc\u30c0\u30fc\u540d",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "\u5099\u8003",
+                    "type": "string"
+                },
+                "start_latitude": {
+                    "description": "\u51fa\u52e4\u6642\u7def\u5ea6",
+                    "type": "string"
+                },
+                "start_longitude": {
+                    "description": "\u51fa\u52e4\u6642\u7d4c\u5ea6",
+                    "type": "string"
+                },
+                "end_latitude": {
+                    "description": "\u9000\u52e4\u6642\u7def\u5ea6",
+                    "type": "string"
+                },
+                "end_longitude": {
+                    "description": "\u9000\u52e4\u6642\u7d4c\u5ea6",
+                    "type": "string"
+                },
+                "flags": {
+                    "description": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/flagModel"
+                    }
+                },
+                "breaks": {
+                    "description": "\u4f11\u61a9",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/breakModel"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "flagModel": {
+            "description": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225",
+            "properties": {
+                "name": {
+                    "description": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u540d",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "breakModel": {
+            "description": "\u4f11\u61a9",
+            "properties": {
+                "start": {
+                    "description": "\u4f11\u61a9\u958b\u59cb\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD hh:mm"
+                },
+                "end": {
+                    "description": "\u4f11\u61a9\u7d42\u4e86\u65e5\u6642",
+                    "type": "string",
+                    "format": "YYYY-MM-DD hh:mm"
+                },
+                "duration": {
+                    "description": "\u4f11\u61a9\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "start_device": {
+                    "description": "\u4f11\u61a9\u958b\u59cb\u6642\u30ec\u30b3\u30fc\u30c0\u30fc\u540d",
+                    "type": "string"
+                },
+                "end_device": {
+                    "description": "\u4f11\u61a9\u7d42\u4e86\u6642\u30ec\u30b3\u30fc\u30c0\u30fc\u540d",
+                    "type": "string"
+                },
+                "start_latitude": {
+                    "description": "\u4f11\u61a9\u958b\u59cb\u6642\u7def\u5ea6",
+                    "type": "string"
+                },
+                "start_longitude": {
+                    "description": "\u4f11\u61a9\u958b\u59cb\u6642\u7d4c\u5ea6",
+                    "type": "string"
+                },
+                "end_latitude": {
+                    "description": "\u4f11\u61a9\u7d42\u4e86\u6642\u7def\u5ea6",
+                    "type": "string"
+                },
+                "end_longitude": {
+                    "description": "\u4f11\u61a9\u7d42\u4e86\u6642\u7d4c\u5ea6",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "\u5099\u8003",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "expenseModel": {
+            "description": "\u4ea4\u901a\u8cbb\u660e\u7d30",
+            "properties": {
+                "date": {
+                    "description": "\u5229\u7528\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "expense": {
+                    "description": "\u4ea4\u901a\u8cbb",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "\u4ea4\u901a\u624b\u6bb5\uff081: \u96fb\u8eca, 2: \u30d0\u30b9, 3: \u30bf\u30af\u30b7\u30fc, 4: \u65b0\u5e79\u7dda/\u7279\u6025, 5: \u98db\u884c\u6a5f, 6: \u8eca, 7: \u8239/\u30d5\u30a7\u30ea\u30fc, 8: \u305d\u306e\u4ed6, 0: \u7269\u8ca9\uff09",
+                    "type": "integer"
+                },
+                "in": {
+                    "description": "\u5229\u7528\u533a\u9593\uff08\u5165\u5834\u99c5\uff09",
+                    "type": "string"
+                },
+                "out": {
+                    "description": "\u5229\u7528\u533a\u9593\uff08\u51fa\u5834\u99c5\uff09",
+                    "type": "string"
+                },
+                "purpose": {
+                    "description": "\u7528\u9014",
+                    "type": "string"
+                },
+                "account": {
+                    "description": "\u52d8\u5b9a\u79d1\u76ee\u540d",
+                    "type": "string"
+                },
+                "account_code": {
+                    "description": "\u52d8\u5b9a\u79d1\u76ee\u30b3\u30fc\u30c9",
+                    "type": "string"
+                },
+                "sub_account": {
+                    "description": "\u88dc\u52a9\u79d1\u76ee\u540d",
+                    "type": "string"
+                },
+                "sub_account_code": {
+                    "description": "\u88dc\u52a9\u79d1\u76ee\u30b3\u30fc\u30c9",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "\u8a2a\u554f\u5148/\u5099\u8003",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "attendanceWorkflowModel": {
+            "description": "\u52e4\u6020\u7533\u8acb",
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u7533\u8acb\u30b9\u30c6\u30fc\u30bf\u30b9\uff081: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                    "type": "integer"
+                },
+                "break_hours": {
+                    "description": "\u4f11\u61a9\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "total_work_hours": {
+                    "description": "\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "actual_work_hours": {
+                    "description": "\u5b9f\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "paid_holiday": {
+                    "description": "\u6709\u7d66\u53d6\u5f97\u65e5\u6570\u5408\u8a08",
+                    "type": "string",
+                    "format": "9.999"
+                },
+                "hourly_paid_leave": {
+                    "description": "\u6642\u9593\u4f11\u53d6\u5f97\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "left_paid_holiday_at_end_date": {
+                    "description": "\u671f\u9593\u7d42\u4e86\u6642\u70b9\u306e\u6709\u7d66\u4f11\u6687\u6b8b\u65e5\u6570",
+                    "type": "string",
+                    "format": "9.999"
+                },
+                "left_hourly_paid_holiday_at_end_date": {
+                    "description": "\u671f\u9593\u7d42\u4e86\u6642\u70b9\u306e\u6642\u9593\u4f11\u6b8b\u6642\u9593",
+                    "type": "string",
+                    "format": "9"
+                },
+                "regular_work_hours": {
+                    "description": "\u6240\u5b9a\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "overtime_work_hours": {
+                    "description": "\u6642\u9593\u5916\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "statutory_overtime": {
+                    "description": "\u6cd5\u5b9a\u5185\u6b8b\u696d\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "statutory_overtime_applied_fixed": {
+                    "description": "\u6cd5\u5b9a\u5185\u6b8b\u696d\u6642\u9593\uff08\u56fa\u5b9a\u6b8b\u696d\u6642\u9593\u9069\u7528\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "non_statutory_overtime_hours_total": {
+                    "description": "\u6cd5\u5b9a\u5916\u6b8b\u696d\u6642\u9593\uff08\u5408\u8a08\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "non_statutory_overtime_hours_total_applied_fixed": {
+                    "description": "\u6cd5\u5b9a\u5916\u6b8b\u696d\u6642\u9593\uff08\u5408\u8a08\uff09\uff08\u56fa\u5b9a\u6b8b\u696d\u6642\u9593\u9069\u7528\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "non_statutory_overtime_hours_under_60h": {
+                    "description": "\u6cd5\u5b9a\u5916\u6b8b\u696d\u6642\u9593\uff0860\u6642\u9593\u307e\u3067\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "non_statutory_overtime_hours_over_60h": {
+                    "description": "\u6cd5\u5b9a\u5916\u6b8b\u696d\u6642\u9593\uff0860\u6642\u9593\u8d85\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "overtime_work_hours_applied_fixed": {
+                    "description": "\u6b8b\u696d\u6642\u9593\uff08\u56fa\u5b9a\u6b8b\u696d\u6642\u9593\u9069\u7528\uff09",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "latenight_work_hours": {
+                    "description": "\u6df1\u591c\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "agreed_regular_work_hours": {
+                    "description": "\u6708\u9593\u6240\u5b9a\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "monthly_statutory_work_hours": {
+                    "description": "\u6708\u9593\u6cd5\u5b9a\u52b4\u50cd\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "come_late_hours": {
+                    "description": "\u9045\u523b\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "leave_early_hours": {
+                    "description": "\u65e9\u9000\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "fixed_work_hours": {
+                    "description": "\u9069\u7528\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "legal_holiday_work_hours": {
+                    "description": "\u6cd5\u5b9a\u4f11\u65e5\u5b9f\u52b4\u50cd\u6642\u9593\u5408\u8a08",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "come_late_days": {
+                    "description": "\u9045\u523b\u56de\u6570",
+                    "type": "integer"
+                },
+                "leave_early_days": {
+                    "description": "\u65e9\u9000\u56de\u6570",
+                    "type": "integer"
+                },
+                "absent_days": {
+                    "description": "\u6b20\u52e4\u56de\u6570",
+                    "type": "integer"
+                },
+                "attend_days": {
+                    "description": "\u51fa\u52e4\u56de\u6570",
+                    "type": "integer"
+                },
+                "legal_holiday_work_days": {
+                    "description": "\u6cd5\u5b9a\u4f11\u65e5\u51fa\u52e4\u56de\u6570",
+                    "type": "integer"
+                },
+                "fixed_overtime_work_hours": {
+                    "description": "\u56fa\u5b9a\u6b8b\u696d\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "comment": {
+                    "description": "\u7533\u8acb\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "back_comment": {
+                    "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "\u671f\u9593\u958b\u59cb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "end_date": {
+                    "description": "\u671f\u9593\u7d42\u4e86\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "applied_date": {
+                    "description": "\u7533\u8acb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "confirmed_date": {
+                    "description": "\u627f\u8a8d\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "invalid": {
+                    "description": "\u4e0d\u5b8c\u5168\u306a\u30c7\u30fc\u30bf\u6709\u308a",
+                    "type": "boolean"
+                },
+                "details": {
+                    "description": "\u52e4\u6020\u660e\u7d30",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/attendanceModel"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "expenseWorkflowModel": {
+            "description": "\u4ea4\u901a\u8cbb\u7533\u8acb",
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u7533\u8acb\u30b9\u30c6\u30fc\u30bf\u30b9\uff081: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                    "type": "integer"
+                },
+                "total": {
+                    "description": "\u4ea4\u901a\u8cbb\u5408\u8a08",
+                    "type": "integer"
+                },
+                "count": {
+                    "description": "\u660e\u7d30\u4ef6\u6570",
+                    "type": "integer"
+                },
+                "pass_price": {
+                    "description": "\u5b9a\u671f\u4ee3",
+                    "type": "string"
+                },
+                "pass_note": {
+                    "description": "\u5b9a\u671f\u6982\u8981",
+                    "type": "string"
+                },
+                "comment": {
+                    "description": "\u7533\u8acb\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "back_comment": {
+                    "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "\u671f\u9593\u958b\u59cb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "end_date": {
+                    "description": "\u671f\u9593\u7d42\u4e86\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "applied_date": {
+                    "description": "\u7533\u8acb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "confirmed_date": {
+                    "description": "\u627f\u8a8d\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "details": {
+                    "description": "\u4ea4\u901a\u8cbb\u660e\u7d30",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/expenseModel"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "flagWorkflowModel": {
+            "description": "\u4f11\u65e5\u7b49\u306e\u7533\u8acb",
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u7533\u8acb\u30b9\u30c6\u30fc\u30bf\u30b9\uff081: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                    "type": "integer"
+                },
+                "flag": {
+                    "description": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225",
+                    "$ref": "#/definitions/flagModel"
+                },
+                "comment": {
+                    "description": "\u7533\u8acb\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "back_comment": {
+                    "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "\u671f\u9593\u958b\u59cb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "end_date": {
+                    "description": "\u671f\u9593\u7d42\u4e86\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "excluding_holidays": {
+                    "description": "\u4f11\u65e5\u306f\u9664\u304f",
+                    "type": "boolean"
+                },
+                "applied_date": {
+                    "description": "\u7533\u8acb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "confirmed_date": {
+                    "description": "\u627f\u8a8d\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "dates": {
+                    "description": "\u9069\u7528\u3055\u308c\u308b\u65e5",
+                    "type": "array",
+                    "items": {
+                        "description": "\u65e5\u4ed8",
+                        "type": "string",
+                        "format": "YYYY-MM-DD"
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "hourlyPaidLeaveWorkflowModel": {
+            "description": "\u6642\u9593\u4f11\u306e\u7533\u8acb",
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u7533\u8acb\u30b9\u30c6\u30fc\u30bf\u30b9\uff081: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                    "type": "integer"
+                },
+                "work_day": {
+                    "description": "\u51fa\u52e4\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "hours": {
+                    "description": "\u6642\u9593",
+                    "type": "string",
+                    "format": "hh:mm"
+                },
+                "comment": {
+                    "description": "\u7533\u8acb\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "back_comment": {
+                    "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "applied_date": {
+                    "description": "\u7533\u8acb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "confirmed_date": {
+                    "description": "\u627f\u8a8d\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                }
+            },
+            "type": "object"
+        },
+        "compensationWorkflowModel": {
+            "description": "\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb",
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "string"
+                },
+                "family_name": {
+                    "description": "\u59d3",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "\u540d",
+                    "type": "string"
+                },
+                "user_number": {
+                    "description": "\u5f93\u696d\u54e1\u756a\u53f7",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "\u7533\u8acb\u30b9\u30c6\u30fc\u30bf\u30b9\uff081: \u5dee\u623b\u3057, 2: \u7533\u8acb\u6e08\u307f, 3: \u627f\u8a8d\uff09",
+                    "type": "integer"
+                },
+                "work_on_day_off": {
+                    "description": "\u4f11\u65e5\u51fa\u52e4\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "work_day": {
+                    "description": "\u4f11\u65e5\u51fa\u52e4\u6307\u5b9a\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "furikyu": {
+                    "description": "\u632f\u4f11\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "daikyu": {
+                    "description": "\u4ee3\u4f11\u30d5\u30e9\u30b0",
+                    "type": "boolean"
+                },
+                "day_off_date": {
+                    "description": "\u632f\u4f11\u30fb\u4ee3\u4f11\u6307\u5b9a\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "comment": {
+                    "description": "\u7533\u8acb\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "back_comment": {
+                    "description": "\u5dee\u623b\u3057\u30b3\u30e1\u30f3\u30c8",
+                    "type": "string"
+                },
+                "applied_date": {
+                    "description": "\u7533\u8acb\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                },
+                "confirmed_date": {
+                    "description": "\u627f\u8a8d\u65e5",
+                    "type": "string",
+                    "format": "YYYY-MM-DD"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "tags": [
+        {
+            "name": "users",
+            "description": "\u5f93\u696d\u54e1"
+        },
+        {
+            "name": "departments",
+            "description": "\u90e8\u7f72\u30fb\u5e97\u8217"
+        },
+        {
+            "name": "attendances",
+            "description": "\u52e4\u6020"
+        },
+        {
+            "name": "attendance",
+            "description": "\u52e4\u6020"
+        },
+        {
+            "name": "punch",
+            "description": "\u52e4\u6020\u6253\u523b"
+        },
+        {
+            "name": "attendanceFlags",
+            "description": "\u4f11\u65e5\u7b49\u306e\u7a2e\u5225\u8a2d\u5b9a"
+        },
+        {
+            "name": "attendanceHourlyPaidLeave",
+            "description": "\u6642\u9593\u4f11\u306e\u8a2d\u5b9a"
+        },
+        {
+            "name": "attendanceWorkflows",
+            "description": "\u52e4\u6020\u7533\u8acb"
+        },
+        {
+            "name": "expenses",
+            "description": "\u4ea4\u901a\u8cbb"
+        },
+        {
+            "name": "expenseWorkflows",
+            "description": "\u4ea4\u901a\u8cbb\u7533\u8acb"
+        },
+        {
+            "name": "flagWorkflows",
+            "description": "\u4f11\u65e5\u7b49\u306e\u7533\u8acb"
+        },
+        {
+            "name": "hourlyPaidLeaveWorkflows",
+            "description": "\u6642\u9593\u4f11\u306e\u7533\u8acb"
+        },
+        {
+            "name": "compensationWorkflows",
+            "description": "\u4f11\u65e5\u51fa\u52e4\u30fb\u632f\u4f11\u30fb\u4ee3\u4f11\u306e\u7533\u8acb"
+        }
+    ]
+}
