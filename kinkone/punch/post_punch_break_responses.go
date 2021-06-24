@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostPunchBreakReader is a Reader for the PostPunchBreak structure.
@@ -103,19 +103,19 @@ func NewPostPunchBreakUnauthorized() *PostPunchBreakUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type PostPunchBreakUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBreakUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /punch/break][%d] postPunchBreakUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostPunchBreakUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBreakUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBreakUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostPunchBreakForbidden() *PostPunchBreakForbidden {
 APIにアクセスする権限がありません。
 */
 type PostPunchBreakForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBreakForbidden) Error() string {
 	return fmt.Sprintf("[POST /punch/break][%d] postPunchBreakForbidden  %+v", 403, o.Payload)
 }
-func (o *PostPunchBreakForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBreakForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBreakForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostPunchBreakUnprocessableEntity() *PostPunchBreakUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type PostPunchBreakUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBreakUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /punch/break][%d] postPunchBreakUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostPunchBreakUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBreakUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBreakUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostPunchBreakInternalServerError() *PostPunchBreakInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type PostPunchBreakInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBreakInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /punch/break][%d] postPunchBreakInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostPunchBreakInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBreakInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBreakInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostPunchBreakOKBodyResponse
 type PostPunchBreakOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this post punch break o k body response

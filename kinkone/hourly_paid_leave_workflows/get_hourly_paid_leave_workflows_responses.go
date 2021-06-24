@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetHourlyPaidLeaveWorkflowsReader is a Reader for the GetHourlyPaidLeaveWorkflows structure.
@@ -104,19 +104,19 @@ func NewGetHourlyPaidLeaveWorkflowsUnauthorized() *GetHourlyPaidLeaveWorkflowsUn
 APIトークンの値を確認して下さい。
 */
 type GetHourlyPaidLeaveWorkflowsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /hourly_paid_leave/workflows][%d] getHourlyPaidLeaveWorkflowsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetHourlyPaidLeaveWorkflowsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetHourlyPaidLeaveWorkflowsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetHourlyPaidLeaveWorkflowsForbidden() *GetHourlyPaidLeaveWorkflowsForbi
 APIにアクセスする権限がありません。
 */
 type GetHourlyPaidLeaveWorkflowsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsForbidden) Error() string {
 	return fmt.Sprintf("[GET /hourly_paid_leave/workflows][%d] getHourlyPaidLeaveWorkflowsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetHourlyPaidLeaveWorkflowsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetHourlyPaidLeaveWorkflowsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetHourlyPaidLeaveWorkflowsUnprocessableEntity() *GetHourlyPaidLeaveWork
 パラメータの値を確認して下さい。
 */
 type GetHourlyPaidLeaveWorkflowsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /hourly_paid_leave/workflows][%d] getHourlyPaidLeaveWorkflowsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetHourlyPaidLeaveWorkflowsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetHourlyPaidLeaveWorkflowsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetHourlyPaidLeaveWorkflowsInternalServerError() *GetHourlyPaidLeaveWork
 APIサーバーの内部的なエラーです。
 */
 type GetHourlyPaidLeaveWorkflowsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /hourly_paid_leave/workflows][%d] getHourlyPaidLeaveWorkflowsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetHourlyPaidLeaveWorkflowsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetHourlyPaidLeaveWorkflowsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetHourlyPaidLeaveWorkflowsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetHourlyPaidLeaveWorkflowsOKBodyResponse
 type GetHourlyPaidLeaveWorkflowsOKBodyResponse struct {
 
 	// workflows
-	Workflows []*kinkone.HourlyPaidLeaveWorkflowModel `json:"workflows"`
+	Workflows []*model.HourlyPaidLeaveWorkflowModel `json:"workflows"`
 }
 
 // Validate validates this get hourly paid leave workflows o k body response

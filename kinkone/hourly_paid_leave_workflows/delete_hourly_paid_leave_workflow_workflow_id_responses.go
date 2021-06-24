@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // DeleteHourlyPaidLeaveWorkflowWorkflowIDReader is a Reader for the DeleteHourlyPaidLeaveWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewDeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized() *DeleteHourlyPaidL
 APIトークンの値を確認して下さい。
 */
 type DeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /hourly_paid_leave/workflow/{workflowID}][%d] deleteHourlyPaidLeaveWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewDeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden() *DeleteHourlyPaidLeav
 APIにアクセスする権限がありません。
 */
 type DeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /hourly_paid_leave/workflow/{workflowID}][%d] deleteHourlyPaidLeaveWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewDeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity() *DeleteHour
 パラメータの値を確認して下さい。
 */
 type DeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /hourly_paid_leave/workflow/{workflowID}][%d] deleteHourlyPaidLeaveWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewDeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError() *DeleteHour
 APIサーバーの内部的なエラーです。
 */
 type DeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /hourly_paid_leave/workflow/{workflowID}][%d] deleteHourlyPaidLeaveWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteHourlyPaidLeaveWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

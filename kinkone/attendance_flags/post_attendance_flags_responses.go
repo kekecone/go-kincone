@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostAttendanceFlagsReader is a Reader for the PostAttendanceFlags structure.
@@ -103,19 +103,19 @@ func NewPostAttendanceFlagsUnauthorized() *PostAttendanceFlagsUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type PostAttendanceFlagsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceFlagsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /attendance/flags][%d] postAttendanceFlagsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostAttendanceFlagsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceFlagsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceFlagsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostAttendanceFlagsForbidden() *PostAttendanceFlagsForbidden {
 APIにアクセスする権限がありません。
 */
 type PostAttendanceFlagsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceFlagsForbidden) Error() string {
 	return fmt.Sprintf("[POST /attendance/flags][%d] postAttendanceFlagsForbidden  %+v", 403, o.Payload)
 }
-func (o *PostAttendanceFlagsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceFlagsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceFlagsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostAttendanceFlagsUnprocessableEntity() *PostAttendanceFlagsUnprocessab
 パラメータの値を確認して下さい。
 */
 type PostAttendanceFlagsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceFlagsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /attendance/flags][%d] postAttendanceFlagsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostAttendanceFlagsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceFlagsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceFlagsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostAttendanceFlagsInternalServerError() *PostAttendanceFlagsInternalSer
 APIサーバーの内部的なエラーです。
 */
 type PostAttendanceFlagsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceFlagsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /attendance/flags][%d] postAttendanceFlagsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostAttendanceFlagsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceFlagsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceFlagsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostAttendanceFlagsOKBodyResponse
 type PostAttendanceFlagsOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this post attendance flags o k body response

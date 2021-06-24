@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // DeleteAttendanceWorkflowWorkflowIDReader is a Reader for the DeleteAttendanceWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewDeleteAttendanceWorkflowWorkflowIDUnauthorized() *DeleteAttendanceWorkfl
 APIトークンの値を確認して下さい。
 */
 type DeleteAttendanceWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/workflow/{workflowID}][%d] deleteAttendanceWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *DeleteAttendanceWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewDeleteAttendanceWorkflowWorkflowIDForbidden() *DeleteAttendanceWorkflowW
 APIにアクセスする権限がありません。
 */
 type DeleteAttendanceWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/workflow/{workflowID}][%d] deleteAttendanceWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *DeleteAttendanceWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewDeleteAttendanceWorkflowWorkflowIDUnprocessableEntity() *DeleteAttendanc
 パラメータの値を確認して下さい。
 */
 type DeleteAttendanceWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/workflow/{workflowID}][%d] deleteAttendanceWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *DeleteAttendanceWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewDeleteAttendanceWorkflowWorkflowIDInternalServerError() *DeleteAttendanc
 APIサーバーの内部的なエラーです。
 */
 type DeleteAttendanceWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/workflow/{workflowID}][%d] deleteAttendanceWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *DeleteAttendanceWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostExpenseWorkflowWorkflowIDReader is a Reader for the PostExpenseWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewPostExpenseWorkflowWorkflowIDUnauthorized() *PostExpenseWorkflowWorkflow
 APIトークンの値を確認して下さい。
 */
 type PostExpenseWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /expense/workflow/{workflowID}][%d] postExpenseWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostExpenseWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostExpenseWorkflowWorkflowIDForbidden() *PostExpenseWorkflowWorkflowIDF
 APIにアクセスする権限がありません。
 */
 type PostExpenseWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[POST /expense/workflow/{workflowID}][%d] postExpenseWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *PostExpenseWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostExpenseWorkflowWorkflowIDUnprocessableEntity() *PostExpenseWorkflowW
 パラメータの値を確認して下さい。
 */
 type PostExpenseWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /expense/workflow/{workflowID}][%d] postExpenseWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostExpenseWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostExpenseWorkflowWorkflowIDInternalServerError() *PostExpenseWorkflowW
 APIサーバーの内部的なエラーです。
 */
 type PostExpenseWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /expense/workflow/{workflowID}][%d] postExpenseWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostExpenseWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

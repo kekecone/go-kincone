@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // DeleteAttendanceFlagsReader is a Reader for the DeleteAttendanceFlags structure.
@@ -103,19 +103,19 @@ func NewDeleteAttendanceFlagsUnauthorized() *DeleteAttendanceFlagsUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type DeleteAttendanceFlagsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceFlagsUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/flags][%d] deleteAttendanceFlagsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *DeleteAttendanceFlagsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceFlagsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceFlagsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewDeleteAttendanceFlagsForbidden() *DeleteAttendanceFlagsForbidden {
 APIにアクセスする権限がありません。
 */
 type DeleteAttendanceFlagsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceFlagsForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/flags][%d] deleteAttendanceFlagsForbidden  %+v", 403, o.Payload)
 }
-func (o *DeleteAttendanceFlagsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceFlagsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceFlagsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewDeleteAttendanceFlagsUnprocessableEntity() *DeleteAttendanceFlagsUnproce
 パラメータの値を確認して下さい。
 */
 type DeleteAttendanceFlagsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceFlagsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/flags][%d] deleteAttendanceFlagsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *DeleteAttendanceFlagsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceFlagsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceFlagsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewDeleteAttendanceFlagsInternalServerError() *DeleteAttendanceFlagsInterna
 APIサーバーの内部的なエラーです。
 */
 type DeleteAttendanceFlagsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteAttendanceFlagsInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /attendance/flags][%d] deleteAttendanceFlagsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *DeleteAttendanceFlagsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteAttendanceFlagsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteAttendanceFlagsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model DeleteAttendanceFlagsOKBodyResponse
 type DeleteAttendanceFlagsOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this delete attendance flags o k body response

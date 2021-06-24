@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // DeleteExpenseWorkflowWorkflowIDReader is a Reader for the DeleteExpenseWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewDeleteExpenseWorkflowWorkflowIDUnauthorized() *DeleteExpenseWorkflowWork
 APIトークンの値を確認して下さい。
 */
 type DeleteExpenseWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /expense/workflow/{workflowID}][%d] deleteExpenseWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *DeleteExpenseWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteExpenseWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewDeleteExpenseWorkflowWorkflowIDForbidden() *DeleteExpenseWorkflowWorkflo
 APIにアクセスする権限がありません。
 */
 type DeleteExpenseWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /expense/workflow/{workflowID}][%d] deleteExpenseWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *DeleteExpenseWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteExpenseWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewDeleteExpenseWorkflowWorkflowIDUnprocessableEntity() *DeleteExpenseWorkf
 パラメータの値を確認して下さい。
 */
 type DeleteExpenseWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /expense/workflow/{workflowID}][%d] deleteExpenseWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *DeleteExpenseWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteExpenseWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewDeleteExpenseWorkflowWorkflowIDInternalServerError() *DeleteExpenseWorkf
 APIサーバーの内部的なエラーです。
 */
 type DeleteExpenseWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /expense/workflow/{workflowID}][%d] deleteExpenseWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *DeleteExpenseWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteExpenseWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteExpenseWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

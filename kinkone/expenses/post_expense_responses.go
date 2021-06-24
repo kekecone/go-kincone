@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostExpenseReader is a Reader for the PostExpense structure.
@@ -103,19 +103,19 @@ func NewPostExpenseUnauthorized() *PostExpenseUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type PostExpenseUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /expense][%d] postExpenseUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostExpenseUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostExpenseForbidden() *PostExpenseForbidden {
 APIにアクセスする権限がありません。
 */
 type PostExpenseForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseForbidden) Error() string {
 	return fmt.Sprintf("[POST /expense][%d] postExpenseForbidden  %+v", 403, o.Payload)
 }
-func (o *PostExpenseForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostExpenseUnprocessableEntity() *PostExpenseUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type PostExpenseUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /expense][%d] postExpenseUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostExpenseUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostExpenseInternalServerError() *PostExpenseInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type PostExpenseInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostExpenseInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /expense][%d] postExpenseInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostExpenseInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostExpenseInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostExpenseInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostExpenseOKBodyResponse
 type PostExpenseOKBodyResponse struct {
 
 	// expense
-	Expense *kinkone.ExpenseModel `json:"expense,omitempty"`
+	Expense *model.ExpenseModel `json:"expense,omitempty"`
 }
 
 // Validate validates this post expense o k body response

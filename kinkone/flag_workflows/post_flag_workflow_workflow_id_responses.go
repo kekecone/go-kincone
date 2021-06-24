@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostFlagWorkflowWorkflowIDReader is a Reader for the PostFlagWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewPostFlagWorkflowWorkflowIDUnauthorized() *PostFlagWorkflowWorkflowIDUnau
 APIトークンの値を確認して下さい。
 */
 type PostFlagWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostFlagWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /flag/workflow/{workflowID}][%d] postFlagWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostFlagWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostFlagWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostFlagWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostFlagWorkflowWorkflowIDForbidden() *PostFlagWorkflowWorkflowIDForbidd
 APIにアクセスする権限がありません。
 */
 type PostFlagWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostFlagWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[POST /flag/workflow/{workflowID}][%d] postFlagWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *PostFlagWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostFlagWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostFlagWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostFlagWorkflowWorkflowIDUnprocessableEntity() *PostFlagWorkflowWorkflo
 パラメータの値を確認して下さい。
 */
 type PostFlagWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostFlagWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /flag/workflow/{workflowID}][%d] postFlagWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostFlagWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostFlagWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostFlagWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostFlagWorkflowWorkflowIDInternalServerError() *PostFlagWorkflowWorkflo
 APIサーバーの内部的なエラーです。
 */
 type PostFlagWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostFlagWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /flag/workflow/{workflowID}][%d] postFlagWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostFlagWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostFlagWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostFlagWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

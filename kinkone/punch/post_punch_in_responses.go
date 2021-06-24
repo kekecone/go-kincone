@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostPunchInReader is a Reader for the PostPunchIn structure.
@@ -103,19 +103,19 @@ func NewPostPunchInUnauthorized() *PostPunchInUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type PostPunchInUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchInUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /punch/in][%d] postPunchInUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostPunchInUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchInUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchInUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostPunchInForbidden() *PostPunchInForbidden {
 APIにアクセスする権限がありません。
 */
 type PostPunchInForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchInForbidden) Error() string {
 	return fmt.Sprintf("[POST /punch/in][%d] postPunchInForbidden  %+v", 403, o.Payload)
 }
-func (o *PostPunchInForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchInForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchInForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostPunchInUnprocessableEntity() *PostPunchInUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type PostPunchInUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchInUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /punch/in][%d] postPunchInUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostPunchInUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchInUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchInUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostPunchInInternalServerError() *PostPunchInInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type PostPunchInInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchInInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /punch/in][%d] postPunchInInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostPunchInInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchInInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchInInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostPunchInOKBodyResponse
 type PostPunchInOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this post punch in o k body response

@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetFlagWorkflowsReader is a Reader for the GetFlagWorkflows structure.
@@ -104,19 +104,19 @@ func NewGetFlagWorkflowsUnauthorized() *GetFlagWorkflowsUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type GetFlagWorkflowsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetFlagWorkflowsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /flag/workflows][%d] getFlagWorkflowsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetFlagWorkflowsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetFlagWorkflowsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetFlagWorkflowsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetFlagWorkflowsForbidden() *GetFlagWorkflowsForbidden {
 APIにアクセスする権限がありません。
 */
 type GetFlagWorkflowsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetFlagWorkflowsForbidden) Error() string {
 	return fmt.Sprintf("[GET /flag/workflows][%d] getFlagWorkflowsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetFlagWorkflowsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetFlagWorkflowsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetFlagWorkflowsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetFlagWorkflowsUnprocessableEntity() *GetFlagWorkflowsUnprocessableEnti
 パラメータの値を確認して下さい。
 */
 type GetFlagWorkflowsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetFlagWorkflowsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /flag/workflows][%d] getFlagWorkflowsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetFlagWorkflowsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetFlagWorkflowsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetFlagWorkflowsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetFlagWorkflowsInternalServerError() *GetFlagWorkflowsInternalServerErr
 APIサーバーの内部的なエラーです。
 */
 type GetFlagWorkflowsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetFlagWorkflowsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /flag/workflows][%d] getFlagWorkflowsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetFlagWorkflowsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetFlagWorkflowsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetFlagWorkflowsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetFlagWorkflowsOKBodyResponse
 type GetFlagWorkflowsOKBodyResponse struct {
 
 	// workflows
-	Workflows []*kinkone.FlagWorkflowModel `json:"workflows"`
+	Workflows []*model.FlagWorkflowModel `json:"workflows"`
 }
 
 // Validate validates this get flag workflows o k body response

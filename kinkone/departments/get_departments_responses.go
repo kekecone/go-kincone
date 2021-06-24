@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetDepartmentsReader is a Reader for the GetDepartments structure.
@@ -104,19 +104,19 @@ func NewGetDepartmentsUnauthorized() *GetDepartmentsUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type GetDepartmentsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetDepartmentsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /departments][%d] getDepartmentsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetDepartmentsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetDepartmentsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetDepartmentsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetDepartmentsForbidden() *GetDepartmentsForbidden {
 APIにアクセスする権限がありません。
 */
 type GetDepartmentsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetDepartmentsForbidden) Error() string {
 	return fmt.Sprintf("[GET /departments][%d] getDepartmentsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetDepartmentsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetDepartmentsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetDepartmentsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetDepartmentsUnprocessableEntity() *GetDepartmentsUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type GetDepartmentsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetDepartmentsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /departments][%d] getDepartmentsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetDepartmentsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetDepartmentsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetDepartmentsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetDepartmentsInternalServerError() *GetDepartmentsInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type GetDepartmentsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetDepartmentsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /departments][%d] getDepartmentsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetDepartmentsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetDepartmentsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetDepartmentsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetDepartmentsOKBodyResponse
 type GetDepartmentsOKBodyResponse struct {
 
 	// departments
-	Departments []*kinkone.DepartmentModel `json:"departments"`
+	Departments []*model.DepartmentModel `json:"departments"`
 }
 
 // Validate validates this get departments o k body response

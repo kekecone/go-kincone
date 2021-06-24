@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostAttendanceHourlyPaidLeaveReader is a Reader for the PostAttendanceHourlyPaidLeave structure.
@@ -103,19 +103,19 @@ func NewPostAttendanceHourlyPaidLeaveUnauthorized() *PostAttendanceHourlyPaidLea
 APIトークンの値を確認して下さい。
 */
 type PostAttendanceHourlyPaidLeaveUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceHourlyPaidLeaveUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /attendance/hourly_paid_leave][%d] postAttendanceHourlyPaidLeaveUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostAttendanceHourlyPaidLeaveUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceHourlyPaidLeaveUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceHourlyPaidLeaveUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostAttendanceHourlyPaidLeaveForbidden() *PostAttendanceHourlyPaidLeaveF
 APIにアクセスする権限がありません。
 */
 type PostAttendanceHourlyPaidLeaveForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceHourlyPaidLeaveForbidden) Error() string {
 	return fmt.Sprintf("[POST /attendance/hourly_paid_leave][%d] postAttendanceHourlyPaidLeaveForbidden  %+v", 403, o.Payload)
 }
-func (o *PostAttendanceHourlyPaidLeaveForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceHourlyPaidLeaveForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceHourlyPaidLeaveForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostAttendanceHourlyPaidLeaveUnprocessableEntity() *PostAttendanceHourly
 パラメータの値を確認して下さい。
 */
 type PostAttendanceHourlyPaidLeaveUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceHourlyPaidLeaveUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /attendance/hourly_paid_leave][%d] postAttendanceHourlyPaidLeaveUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostAttendanceHourlyPaidLeaveUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceHourlyPaidLeaveUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceHourlyPaidLeaveUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostAttendanceHourlyPaidLeaveInternalServerError() *PostAttendanceHourly
 APIサーバーの内部的なエラーです。
 */
 type PostAttendanceHourlyPaidLeaveInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostAttendanceHourlyPaidLeaveInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /attendance/hourly_paid_leave][%d] postAttendanceHourlyPaidLeaveInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostAttendanceHourlyPaidLeaveInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostAttendanceHourlyPaidLeaveInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostAttendanceHourlyPaidLeaveInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostAttendanceHourlyPaidLeaveOKBodyResponse
 type PostAttendanceHourlyPaidLeaveOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this post attendance hourly paid leave o k body response

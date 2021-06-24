@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetUsersReader is a Reader for the GetUsers structure.
@@ -104,19 +104,19 @@ func NewGetUsersUnauthorized() *GetUsersUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type GetUsersUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetUsersUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /users][%d] getUsersUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetUsersUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetUsersUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetUsersUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetUsersForbidden() *GetUsersForbidden {
 APIにアクセスする権限がありません。
 */
 type GetUsersForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetUsersForbidden) Error() string {
 	return fmt.Sprintf("[GET /users][%d] getUsersForbidden  %+v", 403, o.Payload)
 }
-func (o *GetUsersForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetUsersForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetUsersForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetUsersUnprocessableEntity() *GetUsersUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type GetUsersUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetUsersUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /users][%d] getUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetUsersUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetUsersUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetUsersUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetUsersInternalServerError() *GetUsersInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type GetUsersInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetUsersInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /users][%d] getUsersInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetUsersInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetUsersInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetUsersInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetUsersOKBodyResponse
 type GetUsersOKBodyResponse struct {
 
 	// users
-	Users []*kinkone.UserModel `json:"users"`
+	Users []*model.UserModel `json:"users"`
 }
 
 // Validate validates this get users o k body response

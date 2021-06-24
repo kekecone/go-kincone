@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetAttendancesReader is a Reader for the GetAttendances structure.
@@ -104,19 +104,19 @@ func NewGetAttendancesUnauthorized() *GetAttendancesUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type GetAttendancesUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendancesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /attendances][%d] getAttendancesUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetAttendancesUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendancesUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendancesUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetAttendancesForbidden() *GetAttendancesForbidden {
 APIにアクセスする権限がありません。
 */
 type GetAttendancesForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendancesForbidden) Error() string {
 	return fmt.Sprintf("[GET /attendances][%d] getAttendancesForbidden  %+v", 403, o.Payload)
 }
-func (o *GetAttendancesForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendancesForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendancesForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetAttendancesUnprocessableEntity() *GetAttendancesUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type GetAttendancesUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendancesUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /attendances][%d] getAttendancesUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetAttendancesUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendancesUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendancesUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetAttendancesInternalServerError() *GetAttendancesInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type GetAttendancesInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendancesInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /attendances][%d] getAttendancesInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetAttendancesInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendancesInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendancesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetAttendancesOKBodyResponse
 type GetAttendancesOKBodyResponse struct {
 
 	// attendances
-	Attendances []*kinkone.AttendanceModel `json:"attendances"`
+	Attendances []*model.AttendanceModel `json:"attendances"`
 }
 
 // Validate validates this get attendances o k body response

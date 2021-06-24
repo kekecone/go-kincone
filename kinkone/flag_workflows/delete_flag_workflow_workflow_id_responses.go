@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // DeleteFlagWorkflowWorkflowIDReader is a Reader for the DeleteFlagWorkflowWorkflowID structure.
@@ -103,19 +103,19 @@ func NewDeleteFlagWorkflowWorkflowIDUnauthorized() *DeleteFlagWorkflowWorkflowID
 APIトークンの値を確認して下さい。
 */
 type DeleteFlagWorkflowWorkflowIDUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /flag/workflow/{workflowID}][%d] deleteFlagWorkflowWorkflowIdUnauthorized  %+v", 401, o.Payload)
 }
-func (o *DeleteFlagWorkflowWorkflowIDUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteFlagWorkflowWorkflowIDUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewDeleteFlagWorkflowWorkflowIDForbidden() *DeleteFlagWorkflowWorkflowIDFor
 APIにアクセスする権限がありません。
 */
 type DeleteFlagWorkflowWorkflowIDForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /flag/workflow/{workflowID}][%d] deleteFlagWorkflowWorkflowIdForbidden  %+v", 403, o.Payload)
 }
-func (o *DeleteFlagWorkflowWorkflowIDForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteFlagWorkflowWorkflowIDForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewDeleteFlagWorkflowWorkflowIDUnprocessableEntity() *DeleteFlagWorkflowWor
 パラメータの値を確認して下さい。
 */
 type DeleteFlagWorkflowWorkflowIDUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /flag/workflow/{workflowID}][%d] deleteFlagWorkflowWorkflowIdUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *DeleteFlagWorkflowWorkflowIDUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteFlagWorkflowWorkflowIDUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewDeleteFlagWorkflowWorkflowIDInternalServerError() *DeleteFlagWorkflowWor
 APIサーバーの内部的なエラーです。
 */
 type DeleteFlagWorkflowWorkflowIDInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /flag/workflow/{workflowID}][%d] deleteFlagWorkflowWorkflowIdInternalServerError  %+v", 500, o.Payload)
 }
-func (o *DeleteFlagWorkflowWorkflowIDInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *DeleteFlagWorkflowWorkflowIDInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *DeleteFlagWorkflowWorkflowIDInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

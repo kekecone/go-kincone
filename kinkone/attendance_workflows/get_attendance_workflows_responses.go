@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetAttendanceWorkflowsReader is a Reader for the GetAttendanceWorkflows structure.
@@ -104,19 +104,19 @@ func NewGetAttendanceWorkflowsUnauthorized() *GetAttendanceWorkflowsUnauthorized
 APIトークンの値を確認して下さい。
 */
 type GetAttendanceWorkflowsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendanceWorkflowsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /attendance/workflows][%d] getAttendanceWorkflowsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetAttendanceWorkflowsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendanceWorkflowsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendanceWorkflowsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetAttendanceWorkflowsForbidden() *GetAttendanceWorkflowsForbidden {
 APIにアクセスする権限がありません。
 */
 type GetAttendanceWorkflowsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendanceWorkflowsForbidden) Error() string {
 	return fmt.Sprintf("[GET /attendance/workflows][%d] getAttendanceWorkflowsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetAttendanceWorkflowsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendanceWorkflowsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendanceWorkflowsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetAttendanceWorkflowsUnprocessableEntity() *GetAttendanceWorkflowsUnpro
 パラメータの値を確認して下さい。
 */
 type GetAttendanceWorkflowsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendanceWorkflowsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /attendance/workflows][%d] getAttendanceWorkflowsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetAttendanceWorkflowsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendanceWorkflowsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendanceWorkflowsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetAttendanceWorkflowsInternalServerError() *GetAttendanceWorkflowsInter
 APIサーバーの内部的なエラーです。
 */
 type GetAttendanceWorkflowsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetAttendanceWorkflowsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /attendance/workflows][%d] getAttendanceWorkflowsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetAttendanceWorkflowsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetAttendanceWorkflowsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetAttendanceWorkflowsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetAttendanceWorkflowsOKBodyResponse
 type GetAttendanceWorkflowsOKBodyResponse struct {
 
 	// workflows
-	Workflows []*kinkone.AttendanceWorkflowModel `json:"workflows"`
+	Workflows []*model.AttendanceWorkflowModel `json:"workflows"`
 }
 
 // Validate validates this get attendance workflows o k body response

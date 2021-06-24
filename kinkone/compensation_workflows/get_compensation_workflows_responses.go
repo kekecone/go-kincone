@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetCompensationWorkflowsReader is a Reader for the GetCompensationWorkflows structure.
@@ -104,19 +104,19 @@ func NewGetCompensationWorkflowsUnauthorized() *GetCompensationWorkflowsUnauthor
 APIトークンの値を確認して下さい。
 */
 type GetCompensationWorkflowsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetCompensationWorkflowsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /compensation/workflows][%d] getCompensationWorkflowsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetCompensationWorkflowsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetCompensationWorkflowsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetCompensationWorkflowsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetCompensationWorkflowsForbidden() *GetCompensationWorkflowsForbidden {
 APIにアクセスする権限がありません。
 */
 type GetCompensationWorkflowsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetCompensationWorkflowsForbidden) Error() string {
 	return fmt.Sprintf("[GET /compensation/workflows][%d] getCompensationWorkflowsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetCompensationWorkflowsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetCompensationWorkflowsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetCompensationWorkflowsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetCompensationWorkflowsUnprocessableEntity() *GetCompensationWorkflowsU
 パラメータの値を確認して下さい。
 */
 type GetCompensationWorkflowsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetCompensationWorkflowsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /compensation/workflows][%d] getCompensationWorkflowsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetCompensationWorkflowsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetCompensationWorkflowsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetCompensationWorkflowsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetCompensationWorkflowsInternalServerError() *GetCompensationWorkflowsI
 APIサーバーの内部的なエラーです。
 */
 type GetCompensationWorkflowsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetCompensationWorkflowsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /compensation/workflows][%d] getCompensationWorkflowsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetCompensationWorkflowsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetCompensationWorkflowsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetCompensationWorkflowsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetCompensationWorkflowsOKBodyResponse
 type GetCompensationWorkflowsOKBodyResponse struct {
 
 	// workflows
-	Workflows []*kinkone.CompensationWorkflowModel `json:"workflows"`
+	Workflows []*model.CompensationWorkflowModel `json:"workflows"`
 }
 
 // Validate validates this get compensation workflows o k body response

@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // PostPunchBackReader is a Reader for the PostPunchBack structure.
@@ -103,19 +103,19 @@ func NewPostPunchBackUnauthorized() *PostPunchBackUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type PostPunchBackUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBackUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /punch/back][%d] postPunchBackUnauthorized  %+v", 401, o.Payload)
 }
-func (o *PostPunchBackUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBackUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBackUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -135,19 +135,19 @@ func NewPostPunchBackForbidden() *PostPunchBackForbidden {
 APIにアクセスする権限がありません。
 */
 type PostPunchBackForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBackForbidden) Error() string {
 	return fmt.Sprintf("[POST /punch/back][%d] postPunchBackForbidden  %+v", 403, o.Payload)
 }
-func (o *PostPunchBackForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBackForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBackForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -167,19 +167,19 @@ func NewPostPunchBackUnprocessableEntity() *PostPunchBackUnprocessableEntity {
 パラメータの値を確認して下さい。
 */
 type PostPunchBackUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBackUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /punch/back][%d] postPunchBackUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *PostPunchBackUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBackUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBackUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -199,19 +199,19 @@ func NewPostPunchBackInternalServerError() *PostPunchBackInternalServerError {
 APIサーバーの内部的なエラーです。
 */
 type PostPunchBackInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *PostPunchBackInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /punch/back][%d] postPunchBackInternalServerError  %+v", 500, o.Payload)
 }
-func (o *PostPunchBackInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *PostPunchBackInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *PostPunchBackInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -319,7 +319,7 @@ swagger:model PostPunchBackOKBodyResponse
 type PostPunchBackOKBodyResponse struct {
 
 	// attendance
-	Attendance *kinkone.AttendanceModel `json:"attendance,omitempty"`
+	Attendance *model.AttendanceModel `json:"attendance,omitempty"`
 }
 
 // Validate validates this post punch back o k body response

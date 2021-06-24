@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/kekecone/go-kincone/kinkone"
+	"github.com/kekecone/go-kincone/kinkone/model"
 )
 
 // GetExpenseWorkflowsReader is a Reader for the GetExpenseWorkflows structure.
@@ -104,19 +104,19 @@ func NewGetExpenseWorkflowsUnauthorized() *GetExpenseWorkflowsUnauthorized {
 APIトークンの値を確認して下さい。
 */
 type GetExpenseWorkflowsUnauthorized struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetExpenseWorkflowsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /expense/workflows][%d] getExpenseWorkflowsUnauthorized  %+v", 401, o.Payload)
 }
-func (o *GetExpenseWorkflowsUnauthorized) GetPayload() *kinkone.ErrorModel {
+func (o *GetExpenseWorkflowsUnauthorized) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetExpenseWorkflowsUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -136,19 +136,19 @@ func NewGetExpenseWorkflowsForbidden() *GetExpenseWorkflowsForbidden {
 APIにアクセスする権限がありません。
 */
 type GetExpenseWorkflowsForbidden struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetExpenseWorkflowsForbidden) Error() string {
 	return fmt.Sprintf("[GET /expense/workflows][%d] getExpenseWorkflowsForbidden  %+v", 403, o.Payload)
 }
-func (o *GetExpenseWorkflowsForbidden) GetPayload() *kinkone.ErrorModel {
+func (o *GetExpenseWorkflowsForbidden) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetExpenseWorkflowsForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -168,19 +168,19 @@ func NewGetExpenseWorkflowsUnprocessableEntity() *GetExpenseWorkflowsUnprocessab
 パラメータの値を確認して下さい。
 */
 type GetExpenseWorkflowsUnprocessableEntity struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetExpenseWorkflowsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /expense/workflows][%d] getExpenseWorkflowsUnprocessableEntity  %+v", 422, o.Payload)
 }
-func (o *GetExpenseWorkflowsUnprocessableEntity) GetPayload() *kinkone.ErrorModel {
+func (o *GetExpenseWorkflowsUnprocessableEntity) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetExpenseWorkflowsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -200,19 +200,19 @@ func NewGetExpenseWorkflowsInternalServerError() *GetExpenseWorkflowsInternalSer
 APIサーバーの内部的なエラーです。
 */
 type GetExpenseWorkflowsInternalServerError struct {
-	Payload *kinkone.ErrorModel
+	Payload *model.ErrorModel
 }
 
 func (o *GetExpenseWorkflowsInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /expense/workflows][%d] getExpenseWorkflowsInternalServerError  %+v", 500, o.Payload)
 }
-func (o *GetExpenseWorkflowsInternalServerError) GetPayload() *kinkone.ErrorModel {
+func (o *GetExpenseWorkflowsInternalServerError) GetPayload() *model.ErrorModel {
 	return o.Payload
 }
 
 func (o *GetExpenseWorkflowsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(kinkone.ErrorModel)
+	o.Payload = new(model.ErrorModel)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -320,7 +320,7 @@ swagger:model GetExpenseWorkflowsOKBodyResponse
 type GetExpenseWorkflowsOKBodyResponse struct {
 
 	// workflows
-	Workflows []*kinkone.ExpenseWorkflowModel `json:"workflows"`
+	Workflows []*model.ExpenseWorkflowModel `json:"workflows"`
 }
 
 // Validate validates this get expense workflows o k body response
